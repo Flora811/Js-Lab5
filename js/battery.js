@@ -21,6 +21,8 @@ function updateBatteryStatus(battery) {
     // STEP 3c: Update the charge level
     chargeLevel.textContent = (battery.level * 100) + "%";
     chargeMeter.value = battery.level * 100;
+    let url =`https://robohash.org/${battery.level*100}.png?set=set4`;
+    image.setAttribute('src', url);
 }
 
 // STEP 2a: Using the getBattery() method of the navigator object, 
@@ -40,5 +42,9 @@ navigator.getBattery().then(battery => {
     });
 })
 
+// Creating an image element to add the image from 3rd party api
+const image = document.createElement('img');
+document.body.appendChild(image);
+ 
 
 /* This script adapted from the excellent code examples found at https://www.w3.org/TR/battery-status/#examples and https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API */
